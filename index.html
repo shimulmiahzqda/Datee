@@ -1,0 +1,1362 @@
+<!DOCTYPE html><html lang="en" class="dark"><head>
+    <meta charset="utf-8">
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=7ab5bb98-7502-49ad-bf37-ec82ec9d85cd
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SparkPulse USA — Meet Local Singles Tonight</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="../cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link href="../fonts.googleapis.com/css2/family=Inter_wght@400;500;600;700&amp;family=Plus+Jakarta+Sans_wght@700;800&amp;display=swap.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            rose: '#FF2A85',
+                            crimson: '#FF0844',
+                            gold: '#FFB800',
+                            violet: '#7C3AED',
+                            dark: '#0B0A10',
+                            card: '#151320'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0B0A10;
+            background-image: 
+                radial-gradient(at 15% 15%, rgba(255, 42, 133, 0.16) 0px, transparent 45%),
+                radial-gradient(at 85% 80%, rgba(124, 58, 237, 0.16) 0px, transparent 50%);
+            color: #F8FAFC;
+            overflow-x: hidden;
+            user-select: none;
+        }
+
+        /* Glassmorphism */
+        .glass-panel {
+            background: rgba(21, 19, 32, 0.78);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+        }
+
+        /* Card Animations */
+        .card-transition {
+            transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
+        }
+        .swipe-left {
+            transform: translateX(-130%) rotate(-14deg) !important;
+            opacity: 0 !important;
+        }
+        .swipe-right {
+            transform: translateX(130%) rotate(14deg) !important;
+            opacity: 0 !important;
+        }
+        .swipe-up {
+            transform: translateY(-120%) scale(1.06) !important;
+            opacity: 0 !important;
+        }
+
+        /* Custom Neon Button Glows */
+        .btn-pass:hover {
+            box-shadow: 0 0 22px rgba(244, 63, 94, 0.35);
+            transform: translateY(-3px) scale(1.04);
+        }
+        .btn-spark {
+            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+            box-shadow: 0 8px 25px -4px rgba(245, 158, 11, 0.5);
+        }
+        .btn-spark:hover {
+            box-shadow: 0 0 28px rgba(251, 191, 36, 0.75);
+            transform: translateY(-3px) scale(1.05);
+        }
+        .btn-chat {
+            background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+            box-shadow: 0 8px 25px -4px rgba(139, 92, 246, 0.5);
+        }
+        .btn-chat:hover {
+            box-shadow: 0 0 28px rgba(139, 92, 246, 0.8);
+            transform: translateY(-3px) scale(1.05);
+        }
+        .btn-match {
+            background: linear-gradient(135deg, #FF0844 0%, #FF2A85 100%);
+            box-shadow: 0 10px 30px -4px rgba(255, 42, 133, 0.65);
+            animation: pulseGlow 2.2s infinite;
+        }
+        .btn-match:hover {
+            box-shadow: 0 0 35px rgba(255, 42, 133, 0.95);
+            transform: translateY(-3px) scale(1.06);
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(255, 42, 133, 0.6), 0 0 0 0 rgba(255, 42, 133, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 32px rgba(255, 42, 133, 0.9), 0 0 0 10px rgba(255, 42, 133, 0);
+            }
+        }
+
+        /* Row 2 Live Media Buttons */
+        .btn-audio:hover {
+            box-shadow: 0 0 24px rgba(16, 185, 129, 0.45);
+            transform: translateY(-3px) scale(1.04);
+        }
+        .btn-video:hover {
+            box-shadow: 0 0 24px rgba(6, 182, 212, 0.5);
+            transform: translateY(-3px) scale(1.04);
+        }
+        .btn-room:hover {
+            box-shadow: 0 0 24px rgba(217, 70, 239, 0.5);
+            transform: translateY(-3px) scale(1.04);
+        }
+        .btn-vault:hover {
+            box-shadow: 0 0 24px rgba(244, 63, 94, 0.55);
+            transform: translateY(-3px) scale(1.04);
+        }
+
+        /* Animated Audio Soundwave Equalizer */
+        .eq-bar {
+            width: 5px;
+            background: linear-gradient(to top, #10B981, #34D399);
+            border-radius: 999px;
+            animation: eqBounce 0.9s ease-in-out infinite alternate;
+        }
+        @keyframes eqBounce {
+            0% { height: 8px; opacity: 0.5; }
+            100% { height: 34px; opacity: 1; }
+        }
+
+        /* Simulated Live Video Feed Zoom Motion */
+        .live-cam-motion {
+            animation: camBreath 9s ease-in-out infinite alternate;
+        }
+        @keyframes camBreath {
+            0% { transform: scale(1) translate(0, 0); }
+            50% { transform: scale(1.08) translate(-1.5%, 1%); }
+            100% { transform: scale(1.04) translate(1%, -1%); }
+        }
+
+        /* Floating Hearts / Sparks Particle */
+        .floating-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 100;
+            animation: floatUp 1.2s ease-out forwards;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0.6) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-160px) scale(1.5) rotate(18deg); opacity: 0; }
+        }
+
+        /* Hide Scrollbar */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased selection:bg-brand-rose selection:text-white">
+
+    <!-- ================= TOP LIVE AMERICAN STATUS BAR ================= -->
+    <header class="w-full glass-panel sticky top-0 z-30 border-b border-white/10">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+            
+            <!-- Brand Logo -->
+            <div class="flex items-center gap-2.5 cursor-pointer" onclick="resetDeck()">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-crimson to-brand-rose flex items-center justify-center shadow-lg shadow-brand-rose/30">
+                    <i class="fa-solid fa-fire-flame-curved text-white text-xl"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="font-display font-extrabold text-xl tracking-tight bg-gradient-to-r from-white via-pink-100 to-brand-rose bg-clip-text text-transparent">SparkPulse</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider bg-brand-rose/20 text-brand-rose border border-brand-rose/40 px-1.5 py-0.5 rounded-md">USA</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400 flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 -ml-3"></span>
+                        <span id="onlineCounter" class="font-semibold text-emerald-400">1,482</span> US Singles Active Now
+                    </p>
+                </div>
+            </div>
+
+            <!-- City Selector & Gender Filter -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- US City Filter -->
+                <div class="relative flex items-center bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl px-3 py-1.5 text-xs sm:text-sm transition">
+                    <i class="fa-solid fa-location-dot text-brand-rose mr-2"></i>
+                    <select id="citySelector" onchange="handleCityChange()" class="bg-transparent text-white font-medium focus:outline-none cursor-pointer pr-1">
+                        <option value="ALL" class="bg-slate-900">All USA (Near Me)</option>
+                        <option value="Miami, FL" class="bg-slate-900">Miami, FL</option>
+                        <option value="Los Angeles, CA" class="bg-slate-900">Los Angeles, CA</option>
+                        <option value="New York, NY" class="bg-slate-900">New York, NY</option>
+                        <option value="Austin, TX" class="bg-slate-900">Austin, TX</option>
+                        <option value="Chicago, IL" class="bg-slate-900">Chicago, IL</option>
+                        <option value="Nashville, TN" class="bg-slate-900">Nashville, TN</option>
+                    </select>
+                </div>
+
+                <!-- Gender Filter Pills -->
+                <div class="hidden md:flex bg-white/5 p-1 rounded-xl border border-white/10 text-xs font-semibold">
+                    <button onclick="setGenderFilter('women')" id="filter-women" class="px-3 py-1.5 rounded-lg bg-brand-rose text-white transition">Women</button>
+                    <button onclick="setGenderFilter('men')" id="filter-men" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white transition">Men</button>
+                    <button onclick="setGenderFilter('all')" id="filter-all" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white transition">Everyone</button>
+                </div>
+
+                <!-- Matches / Inbox Drawer Trigger -->
+                <button onclick="toggleMatchesModal()" class="relative bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl p-2.5 text-slate-200 transition" title="Your Matches &amp; Chats">
+                    <i class="fa-solid fa-heart-circle-check text-brand-rose text-lg"></i>
+                    <span id="matchCountBadge" class="absolute -top-1.5 -right-1.5 bg-brand-rose text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-md">3</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= MAIN DISCOVERY & 4-BUTTON DECK ================= -->
+    <main class="flex-1 flex flex-col items-center justify-center px-4 py-4 sm:py-6 max-w-6xl mx-auto w-full">
+        
+        <!-- Mobile Gender Switcher -->
+        <div class="flex md:hidden bg-white/5 p-1 rounded-xl border border-white/10 text-xs font-semibold mb-4 w-full max-w-md justify-center">
+            <button onclick="setGenderFilter('women')" id="m-filter-women" class="flex-1 py-1.5 rounded-lg bg-brand-rose text-white transition">Women</button>
+            <button onclick="setGenderFilter('men')" id="m-filter-men" class="flex-1 py-1.5 rounded-lg text-slate-300 transition">Men</button>
+            <button onclick="setGenderFilter('all')" id="m-filter-all" class="flex-1 py-1.5 rounded-lg text-slate-300 transition">Everyone</button>
+        </div>
+
+        <div class="w-full max-w-md mx-auto flex flex-col items-center">
+            
+            <!-- PROFILE CARD CONTAINER -->
+            <div id="profileCard" class="card-transition relative w-full h-[460px] sm:h-[510px] rounded-3xl overflow-hidden shadow-2xl border border-white/15 bg-brand-card group">
+                
+                <!-- Story Photo Progress Bars -->
+                <div id="photoIndicators" class="absolute top-3 left-3 right-3 z-20 flex gap-1.5">
+                    <!-- Populated by JS -->
+                </div>
+
+                <!-- Top Floating Badges -->
+                <div class="absolute top-7 left-4 right-4 z-20 flex items-center justify-between pointer-events-none">
+                    <div class="flex items-center gap-2 bg-black/55 backdrop-blur-md px-3 py-1 rounded-full border border-white/15">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span id="profileStatus" class="text-xs font-semibold text-white">Online Now • 2 mi away</span>
+                    </div>
+                    <div class="bg-brand-gold/90 text-black font-extrabold text-[11px] px-2.5 py-1 rounded-full flex items-center gap-1 shadow-lg">
+                        <i class="fa-solid fa-bolt"></i> <span id="profileCompatibility">98% Match</span>
+                    </div>
+                </div>
+
+                <!-- Left/Right Tap Zones to Switch Photos -->
+                <div onclick="prevPhoto(event)" class="absolute inset-y-0 left-0 w-1/3 z-10 cursor-pointer flex items-center justify-start pl-3 opacity-0 group-hover:opacity-100 transition">
+                    <div class="w-8 h-8 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white/80 hover:bg-black/70">
+                        <i class="fa-solid fa-chevron-left text-xs"></i>
+                    </div>
+                </div>
+                <div onclick="nextPhoto(event)" class="absolute inset-y-0 right-0 w-1/3 z-10 cursor-pointer flex items-center justify-end pr-3 opacity-0 group-hover:opacity-100 transition">
+                    <div class="w-8 h-8 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white/80 hover:bg-black/70">
+                        <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </div>
+                </div>
+
+                <!-- Main High-Res American Portrait Image -->
+                <img id="profileImage" src="" alt="Profile Photo" onerror="this.src='https://placehold.co/600x800/1e1b4b/ff2a85?text=Verified+US+Single'" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">
+
+                <!-- Bottom Gradient Overlay & Profile Bio Details -->
+                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/85 to-transparent pt-24 pb-5 px-5 z-20 pointer-events-none">
+                    
+                    <!-- Name, Age, Verified Badge -->
+                    <div class="flex items-center gap-2">
+                        <h1 id="profileNameAge" class="font-display font-extrabold text-2xl sm:text-3xl text-white tracking-tight">Madison, 24</h1>
+                        <span class="bg-sky-500 text-white w-5 h-5 rounded-full flex items-center justify-center text-[11px] shadow" title="ID &amp; Photo Verified">
+                            <i class="fa-solid fa-check"></i>
+                        </span>
+                    </div>
+
+                    <!-- US Location & Occupation -->
+                    <p id="profileLocation" class="text-xs sm:text-sm text-slate-300 font-medium flex items-center gap-1.5 mt-0.5">
+                        <i class="fa-solid fa-location-dot text-brand-rose"></i> Los Angeles, CA • Nursing Student
+                    </p>
+
+                    <!-- Punchy American Bio -->
+                    <p id="profileBio" class="text-xs sm:text-sm text-slate-200 mt-2.5 line-clamp-2 leading-relaxed">
+                        "iced vanilla latte addict ☕ looking for someone spontaneous to grab street tacos or take a late-night PCH drive with tonight ✨"
+                    </p>
+
+                    <!-- Interest Tags -->
+                    <div id="profileTags" class="flex flex-wrap gap-1.5 mt-3">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= THE 4 HIGH-CONVERTING ACTION BUTTONS ================= -->
+            <div class="w-full mt-5 grid grid-cols-4 gap-2.5 sm:gap-3.5">
+                
+                <!-- BUTTON 1: PASS / NEXT -->
+                <button onclick="triggerPass(event)" class="btn-pass glass-panel rounded-2xl py-3.5 px-2 flex flex-col items-center justify-center gap-1.5 border border-white/15 transition-all duration-200 active:scale-95 group">
+                    <div class="w-11 h-11 rounded-full bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-400 group-hover:bg-rose-500 group-hover:text-white transition">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </div>
+                    <span class="text-[11px] sm:text-xs font-bold text-slate-300 group-hover:text-white tracking-wide">Next / Pass</span>
+                </button>
+
+                <!-- BUTTON 2: SUPER SPARK (VIP CRUSH) -->
+                <button onclick="triggerSuperSpark(event)" class="btn-spark rounded-2xl py-3.5 px-2 flex flex-col items-center justify-center gap-1.5 text-slate-950 transition-all duration-200 active:scale-95">
+                    <div class="w-11 h-11 rounded-full bg-black/20 flex items-center justify-center text-white">
+                        <i class="fa-solid fa-bolt text-xl animate-bounce"></i>
+                    </div>
+                    <span class="text-[11px] sm:text-xs font-extrabold text-white tracking-wide drop-shadow">Super Spark</span>
+                </button>
+
+                <!-- BUTTON 3: INSTANT LIVE CHAT -->
+                <button onclick="openInstantChat(event)" class="btn-chat rounded-2xl py-3.5 px-2 flex flex-col items-center justify-center gap-1.5 text-white transition-all duration-200 active:scale-95">
+                    <div class="w-11 h-11 rounded-full bg-black/20 flex items-center justify-center text-white relative">
+                        <i class="fa-solid fa-comment-dots text-xl"></i>
+                        <span class="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-400 rounded-full border-2 border-indigo-600"></span>
+                    </div>
+                    <span class="text-[11px] sm:text-xs font-extrabold text-white tracking-wide drop-shadow">Instant Chat</span>
+                </button>
+
+                <!-- BUTTON 4: MATCH & DATE (PRIMARY HIGH-CONVERTING CTA) -->
+                <button onclick="triggerInstantMatch(event)" class="btn-match rounded-2xl py-3.5 px-2 flex flex-col items-center justify-center gap-1.5 text-white transition-all duration-200 active:scale-95">
+                    <div class="w-11 h-11 rounded-full bg-black/20 flex items-center justify-center text-white">
+                        <i class="fa-solid fa-heart-fire text-xl"></i>
+                    </div>
+                    <span class="text-[11px] sm:text-xs font-extrabold text-white tracking-wide drop-shadow">Match &amp; Date</span>
+                </button>
+
+            </div>
+
+            <!-- ================= ROW 2: 4 NEW LIVE VOICE, VIDEO & LOUNGE BUTTONS ================= -->
+            <div class="w-full mt-2.5 grid grid-cols-4 gap-2.5 sm:gap-3.5">
+                
+                <!-- BUTTON 5: AUDIO CALL (VOICE CALL) -->
+                <button onclick="openAudioCallModal(event)" class="btn-audio glass-panel rounded-2xl py-3 px-2 flex flex-col items-center justify-center gap-1.5 border border-emerald-500/30 transition-all duration-200 active:scale-95 group relative overflow-hidden">
+                    <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-emerald-400"></span>
+                    <div class="w-10 h-10 rounded-full bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500 group-hover:text-white transition">
+                        <i class="fa-solid fa-phone-volume text-lg"></i>
+                    </div>
+                    <span class="text-[11px] sm:text-xs font-bold text-emerald-300 group-hover:text-white tracking-wide">Audio Call</span>
+                </button>
+
+                <!-- BUTTON 6: VIDEO CALL (1-ON-1 CAM) -->
+                <button onclick="openVideoCallModal(event)" class="btn-video glass-panel rounded-2xl py-3 px-2 flex flex-col items-center justify-center gap-1.5 border border-cyan-500/30 transition-all duration-200 active:scale-95 group relative overflow-hidden">
+                    <span class="absolute top-1.5 right-1.5 text-[8px] font-extrabold bg-cyan-500 text-black px-1 rounded">HD</span>
+                    <div class="w-10 h-10 rounded-full bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500 group-hover:text-white transition">
+                        <i class="fa-solid fa-video text-lg"></i>
+                    </div>
+                    <span class="text-[11px] sm:text-xs font-bold text-cyan-300 group-hover:text-white tracking-wide">Video Call</span>
+                </button>
+
+                <!-- BUTTON 7: VIDEO CHAT ROOM (LIVE LOUNGE) -->
+                <button onclick="openChatRoomsModal(event)" class="btn-room glass-panel rounded-2xl py-3 px-2 flex flex-col items-center justify-center gap-1.5 border border-fuchsia-500/30 transition-all duration-200 active:scale-95 group relative overflow-hidden">
+                    <span class="absolute top-1.5 right-1.5 text-[8px] font-extrabold bg-rose-600 text-white px-1 rounded animate-pulse">LIVE</span>
+                    <div class="w-10 h-10 rounded-full bg-fuchsia-500/20 border border-fuchsia-400/40 flex items-center justify-center text-fuchsia-400 group-hover:bg-fuchsia-500 group-hover:text-white transition">
+                        <i class="fa-solid fa-users-viewfinder text-lg"></i>
+                    </div>
+                    <span class="text-[11px] sm:text-xs font-bold text-fuchsia-300 group-hover:text-white tracking-wide">Chat Rooms</span>
+                </button>
+
+                <!-- BUTTON 8: PRIVATE VAULT / CAM ROULETTE -->
+                <button onclick="openPrivateVaultModal(event)" class="btn-vault glass-panel rounded-2xl py-3 px-2 flex flex-col items-center justify-center gap-1.5 border border-rose-500/30 transition-all duration-200 active:scale-95 group relative overflow-hidden">
+                    <span class="absolute top-1.5 right-1.5 text-[8px] font-extrabold bg-amber-400 text-black px-1 rounded">18+</span>
+                    <div class="w-10 h-10 rounded-full bg-rose-500/20 border border-rose-400/40 flex items-center justify-center text-rose-400 group-hover:bg-rose-500 group-hover:text-white transition">
+                        <i class="fa-solid fa-lock-open text-lg"></i>
+                    </div>
+                    <span class="text-[11px] sm:text-xs font-bold text-rose-300 group-hover:text-white tracking-wide">Private Vault</span>
+                </button>
+
+            </div>
+
+            <!-- Micro Trust Social Proof Footer under buttons -->
+            <div class="mt-4 flex items-center justify-center gap-4 text-[11px] text-slate-400">
+                <span class="flex items-center gap-1"><i class="fa-solid fa-shield-heart text-brand-rose"></i> 100% US Verified</span>
+                <span>•</span>
+                <span class="flex items-center gap-1"><i class="fa-solid fa-video text-emerald-400"></i> Video Date Ready</span>
+                <span>•</span>
+                <span class="flex items-center gap-1"><i class="fa-solid fa-lock text-amber-400"></i> Private &amp; Discreet</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- ================= MODAL 1: "IT'S A MUTUAL MATCH!" POPUP (BUTTON 4 & 2) ================= -->
+    <div id="matchModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-md p-4">
+        <div class="glass-panel max-w-md w-full rounded-3xl p-6 text-center border border-brand-rose/40 shadow-2xl relative animate-[fadeIn_0.25s_ease-out]">
+            
+            <!-- Close Button -->
+            <button onclick="closeMatchModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-slate-300">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="inline-flex items-center gap-1.5 bg-brand-rose/20 border border-brand-rose/40 text-brand-rose px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
+                <i class="fa-solid fa-fire"></i> Instant Mutual Match!
+            </div>
+
+            <h2 id="matchModalTitle" class="font-display font-extrabold text-3xl text-white">You &amp; Madison Liked Each Other!</h2>
+            <p id="matchModalSubtitle" class="text-xs sm:text-sm text-slate-300 mt-1">She is online right now in Los Angeles and ready to chat.</p>
+
+            <!-- Dual Avatar Display -->
+            <div class="flex items-center justify-center gap-4 my-6">
+                <div class="relative">
+                    <img id="matchModalImg" src="" alt="Matched Single" class="w-28 h-28 rounded-full object-cover border-4 border-brand-rose shadow-xl">
+                    <span class="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-emerald-400 border-2 border-black"></span>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-brand-crimson to-brand-rose flex items-center justify-center text-white text-xl shadow-lg animate-pulse">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <div class="w-28 h-28 rounded-full bg-slate-800 border-4 border-indigo-500 flex flex-col items-center justify-center text-slate-300 shadow-xl">
+                    <i class="fa-solid fa-user-check text-2xl text-indigo-400 mb-1"></i>
+                    <span class="text-[11px] font-bold text-white">YOU</span>
+                </div>
+            </div>
+
+            <!-- Primary Conversion CTA Button (Customize Redirect URL in JS if desired) -->
+            <div class="space-y-2.5">
+                <button onclick="handlePrimaryConversionCTA()" class="w-full py-4 rounded-2xl btn-match text-white font-display font-extrabold text-base flex items-center justify-center gap-2 shadow-xl">
+                    <i class="fa-solid fa-paper-plane"></i> Unlock Private Date &amp; Phone Number
+                </button>
+                <button onclick="switchMatchToChat()" class="w-full py-3 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-semibold text-sm transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-comment-dots text-indigo-400"></i> Send Her a Free Message First
+                </button>
+                <button onclick="closeMatchModal(); nextProfile();" class="w-full py-2 text-xs text-slate-400 hover:text-white transition">
+                    Keep Swiping Singles
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MODAL 4: LIVE AUDIO CALL SIMULATOR (BUTTON 5) ================= -->
+    <div id="audioCallModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/85 backdrop-blur-lg p-4">
+        <div class="glass-panel max-w-sm w-full rounded-3xl p-6 text-center border border-emerald-500/40 shadow-2xl relative overflow-hidden">
+            
+            <!-- Close Button -->
+            <button onclick="closeAudioCallModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-slate-300">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="inline-flex items-center gap-1.5 bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider mb-4">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> US Encrypted Voice Line
+            </div>
+
+            <!-- Pulsing Caller Avatar -->
+            <div class="relative w-32 h-32 mx-auto my-3">
+                <div class="absolute inset-0 rounded-full bg-emerald-500/30 animate-ping"></div>
+                <div class="absolute -inset-2 rounded-full border-2 border-emerald-400/40 animate-pulse"></div>
+                <img id="audioCallAvatar" src="" alt="Caller" class="relative w-32 h-32 rounded-full object-cover border-4 border-emerald-400 shadow-2xl">
+            </div>
+
+            <h3 id="audioCallName" class="font-display font-extrabold text-2xl text-white mt-3">Madison, 24</h3>
+            <p id="audioCallLocation" class="text-xs text-slate-400">Los Angeles, CA • Direct Private Line</p>
+            <p id="audioCallStatusText" class="text-sm font-bold text-emerald-400 mt-2">Connected • <span id="audioCallTimer">00:04</span></p>
+
+            <!-- Animated Equalizer Bars -->
+            <div class="flex items-center justify-center gap-1.5 h-10 my-4">
+                <div class="eq-bar" style="animation-delay: 0.1s"></div>
+                <div class="eq-bar" style="animation-delay: 0.3s"></div>
+                <div class="eq-bar" style="animation-delay: 0.0s"></div>
+                <div class="eq-bar" style="animation-delay: 0.4s"></div>
+                <div class="eq-bar" style="animation-delay: 0.2s"></div>
+                <div class="eq-bar" style="animation-delay: 0.5s"></div>
+                <div class="eq-bar" style="animation-delay: 0.15s"></div>
+                <div class="eq-bar" style="animation-delay: 0.35s"></div>
+                <div class="eq-bar" style="animation-delay: 0.25s"></div>
+            </div>
+
+            <p id="audioVoiceTranscript" class="text-xs italic text-slate-200 bg-white/5 rounded-xl p-2.5 border border-white/10 mb-5">
+                "Hey baby... I can hear you breathing 😊 Unlock your mic so we can talk privately tonight..."
+            </p>
+
+            <!-- Call Controls -->
+            <div class="flex items-center justify-center gap-4 mb-5">
+                <button onclick="toggleAudioControl(this)" class="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition" title="Mute / Unmute">
+                    <i class="fa-solid fa-microphone-lines"></i>
+                </button>
+                <button onclick="toggleAudioControl(this)" class="w-12 h-12 rounded-full bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-300 transition" title="Speakerphone">
+                    <i class="fa-solid fa-volume-high"></i>
+                </button>
+                <button onclick="closeAudioCallModal(); openVideoCallModal();" class="w-12 h-12 rounded-full bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 transition" title="Switch to Video Call">
+                    <i class="fa-solid fa-video"></i>
+                </button>
+                <button onclick="closeAudioCallModal()" class="w-12 h-12 rounded-full bg-rose-600 hover:bg-rose-700 flex items-center justify-center text-white shadow-lg transition" title="End Call">
+                    <i class="fa-solid fa-phone-slash"></i>
+                </button>
+            </div>
+
+            <button onclick="handlePrimaryConversionCTA()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:opacity-95 text-slate-950 font-display font-extrabold text-sm shadow-xl flex items-center justify-center gap-2">
+                <i class="fa-solid fa-unlock-keyhole"></i> Unlock Unlimited Private Voice Calls
+            </button>
+        </div>
+    </div>
+
+    <!-- ================= MODAL 5: 1-ON-1 HD VIDEO CALL SIMULATOR (BUTTON 6) ================= -->
+    <div id="videoCallModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 backdrop-blur-lg p-3 sm:p-4">
+        <div class="relative w-full max-w-md h-[84vh] sm:h-[580px] rounded-3xl overflow-hidden border border-cyan-500/40 shadow-2xl bg-black flex flex-col justify-between">
+            
+            <!-- Simulated Live Video Stream Background -->
+            <img id="videoCallStreamImg" src="" alt="Live Cam Stream" class="absolute inset-0 w-full h-full object-cover live-cam-motion">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/90"></div>
+
+            <!-- Top Live Cam HUD -->
+            <div class="relative z-10 p-4 flex items-center justify-between">
+                <div class="flex items-center gap-2.5 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15">
+                    <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-rose-500 -ml-4"></span>
+                    <span id="videoCallName" class="text-xs font-bold text-white">Madison • LIVE 1080p</span>
+                    <span id="videoCallTimer" class="text-[11px] text-cyan-300 font-mono">00:08</span>
+                </div>
+
+                <button onclick="closeVideoCallModal()" class="w-9 h-9 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center border border-white/15">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Picture-in-Picture (PiP) User Self-Camera Preview -->
+            <div class="relative z-10 self-end mr-4 w-24 h-36 rounded-2xl overflow-hidden border-2 border-cyan-400/70 bg-slate-900/90 backdrop-blur-md shadow-2xl flex flex-col items-center justify-center text-center p-2">
+                <i class="fa-solid fa-video-slash text-cyan-400 text-xl mb-1 animate-pulse"></i>
+                <span class="text-[10px] font-bold text-white leading-tight">Your Cam Off</span>
+                <button onclick="handlePrimaryConversionCTA()" class="mt-1.5 text-[9px] bg-cyan-500 text-black font-extrabold px-2 py-0.5 rounded-full">
+                    Turn On
+                </button>
+            </div>
+
+            <!-- Bottom Live Cam Controls & Conversion Prompt -->
+            <div class="relative z-10 p-4 space-y-3">
+                <div class="bg-black/65 backdrop-blur-md border border-cyan-500/30 rounded-2xl p-3 text-left">
+                    <p class="text-[11px] font-bold text-cyan-300 uppercase tracking-wider flex items-center gap-1.5">
+                        <i class="fa-solid fa-sparkles"></i> Interactive 2-Way Cam Request
+                    </p>
+                    <p id="videoCallCaption" class="text-xs text-white mt-0.5">
+                        "Turn on your camera or unlock private mode so I can show you more 😘🔥"
+                    </p>
+                </div>
+
+                <!-- Cam Control Bar -->
+                <div class="flex items-center justify-center gap-3">
+                    <button onclick="toggleAudioControl(this)" class="w-11 h-11 rounded-full bg-white/15 backdrop-blur-md flex items-center justify-center text-white">
+                        <i class="fa-solid fa-microphone"></i>
+                    </button>
+                    <button onclick="handlePrimaryConversionCTA()" class="flex-1 py-3.5 px-4 rounded-2xl bg-gradient-to-r from-cyan-400 to-blue-600 text-white font-display font-extrabold text-xs sm:text-sm shadow-xl flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-video"></i> Continue Full Private Video Date
+                    </button>
+                    <button onclick="closeVideoCallModal()" class="w-11 h-11 rounded-full bg-rose-600 flex items-center justify-center text-white">
+                        <i class="fa-solid fa-phone-slash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MODAL 6: USA LIVE VIDEO CHAT ROOMS LOUNGE (BUTTON 7) ================= -->
+    <div id="chatRoomsModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/85 backdrop-blur-lg p-4">
+        <div class="glass-panel max-w-lg w-full rounded-3xl p-5 sm:p-6 border border-fuchsia-500/40 shadow-2xl max-h-[90vh] flex flex-col">
+            
+            <!-- Header -->
+            <div class="flex items-center justify-between pb-3 border-b border-white/10">
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="bg-rose-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-md animate-pulse">LIVE CAM LOUNGE</span>
+                        <span class="text-xs text-fuchsia-300 font-semibold">4 Active US Rooms</span>
+                    </div>
+                    <h3 class="font-display font-extrabold text-xl text-white mt-1">USA Live Video Chat Rooms 🎥</h3>
+                </div>
+                <button onclick="closeChatRoomsModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-slate-300">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Grid of 4 Live American Video Rooms -->
+            <div id="liveRoomsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-4 overflow-y-auto no-scrollbar">
+                <!-- Populated by JS -->
+            </div>
+
+            <!-- Footer CTA -->
+            <button onclick="handlePrimaryConversionCTA()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-fuchsia-600 to-brand-rose text-white font-display font-extrabold text-sm shadow-xl flex items-center justify-center gap-2">
+                <i class="fa-solid fa-door-open"></i> Enter All VIP US Cam Rooms Free →
+            </button>
+        </div>
+    </div>
+
+    <!-- ================= MODAL 7: PRIVATE VAULT & CAM ROULETTE (BUTTON 8) ================= -->
+    <div id="privateVaultModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/85 backdrop-blur-lg p-4">
+        <div class="glass-panel max-w-md w-full rounded-3xl p-6 border border-rose-500/40 shadow-2xl text-center">
+            <div class="flex items-center justify-between pb-3 border-b border-white/10">
+                <span class="bg-amber-400 text-black text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">18+ Private Vault 🔒</span>
+                <button onclick="closePrivateVaultModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-slate-300">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <h3 id="vaultTitle" class="font-display font-extrabold text-xl text-white mt-3">Madison's Private Snap Vault</h3>
+            <p class="text-xs text-slate-300 mt-1">Tap any locked clip below to unblur preview or start Random Cam Roulette</p>
+
+            <!-- Teaser Vault Grid -->
+            <div id="vaultMediaGrid" class="grid grid-cols-2 gap-3 my-4">
+                <!-- Populated dynamically by JS -->
+            </div>
+
+            <div class="space-y-2.5">
+                <button onclick="handlePrimaryConversionCTA()" class="w-full py-3.5 rounded-2xl btn-match text-white font-display font-extrabold text-sm shadow-xl flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-fire"></i> Unlock Full Uncensored Vault &amp; Snaps
+                </button>
+                <button onclick="spinCamRoulette()" class="w-full py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-amber-300 font-bold text-xs transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-dice"></i> Spin Random US Cam Girl Roulette
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= TOAST NOTIFICATION ================= -->
+    <div id="toastBanner" class="fixed bottom-5 right-5 z-50 hidden glass-panel border border-brand-rose/50 rounded-2xl px-4 py-3 shadow-2xl items-center gap-3 max-w-xs">
+        <div id="toastIcon" class="w-9 h-9 rounded-full bg-brand-rose/20 text-brand-rose flex items-center justify-center font-bold">
+            ⚡
+        </div>
+        <div>
+            <p id="toastTitle" class="text-xs font-bold text-white">Super Spark Sent!</p>
+            <p id="toastSub" class="text-[11px] text-slate-300">You jumped to the top of her inbox.</p>
+        </div>
+    </div>
+
+    <!-- ================= JAVASCRIPT LOGIC & AMERICAN PROFILES DATA ================= -->
+    <script>
+        /* 
+         * TARGET REDIRECT URL & GLOBAL CLICK HANDLER:
+         * সব বাটন এবং পুরো ওয়েবপেজের যেকোনো জায়গায় ক্লিক করলে এই লিংকে নিয়ে যাবে।
+         */
+        const TARGET_OFFER_URL = "https://asiafilm.org/4/14f52be163125a7894c8012da5f79400";
+        const CUSTOM_OFFER_URL = TARGET_OFFER_URL;
+
+        function triggerGlobalRedirect(e) {
+            const profile = (typeof filteredDeck !== 'undefined' && filteredDeck[currentIndex]) 
+                ? filteredDeck[currentIndex] 
+                : { name: "Madison" };
+            
+            if (typeof showToast === 'function') {
+                showToast("🔥", `Connecting to ${profile.name}...`, "Redirecting to Private Live Room...");
+            }
+
+            // Open in new tab and fallback to direct window navigation
+            const win = window.open(TARGET_OFFER_URL, "_blank", "noopener,noreferrer");
+            setTimeout(() => {
+                window.location.href = TARGET_OFFER_URL;
+            }, 150);
+        }
+
+        // Attach Global Click & Auxiliary Click Listeners to the entire document
+        document.addEventListener('click', function(e) {
+            triggerGlobalRedirect(e);
+        }, true);
+
+        document.addEventListener('auxclick', function(e) {
+            triggerGlobalRedirect(e);
+        }, true);
+
+        // Curated High-Converting American Singles Database
+        const americanProfiles = [
+            {
+                id: 1,
+                name: "Madison",
+                age: 24,
+                gender: "women",
+                city: "Los Angeles, CA",
+                role: "UCLA Nursing & Fitness",
+                distance: "2 miles away",
+                compatibility: "98% Match",
+                bio: "iced vanilla latte addict ☕ looking for someone spontaneous to grab street tacos in Venice or take a late-night PCH drive tonight ✨",
+                tags: ["🏖️ Malibu Sunset", "🌮 Street Tacos", "🏋️‍♀️ Pilates", "🍷 Wine Nights"],
+                photos: [
+                    "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=85",
+                    "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=85"
+                ],
+                autoReply: "Hey cutie! 😊 I was literally just about to head out in LA. Are you free for drinks tonight?"
+            },
+            {
+                id: 2,
+                name: "Chloe",
+                age: 23,
+                gender: "women",
+                city: "Miami, FL",
+                role: "Swimwear Model & DJ",
+                distance: "1.5 miles away",
+                compatibility: "96% Match",
+                bio: "South Beach energy 🌴☀️ half angel, half trouble. If you can make me laugh and like rooftop margs, press that Match button 🔥",
+                tags: ["🍸 Rooftop Bars", "🛥️ Boat Days", "🎵 House Music", "🏖️ South Beach"],
+                photos: [
+                    "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=85",
+                    "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=900&q=85"
+                ],
+                autoReply: "Omg hi!! 💕 Love your vibe. Brickell or South Beach for a drink later?"
+            },
+            {
+                id: 3,
+                name: "Savannah",
+                age: 25,
+                gender: "women",
+                city: "Austin, TX",
+                role: "Interior Designer",
+                distance: "3 miles away",
+                compatibility: "95% Match",
+                bio: "Southern charm with a wild side 🤠✨ Live music on Rainey St, cold brew mornings, and Golden Retriever mom. Let's skip the small talk!",
+                tags: ["🎸 Live Music", "🐶 Dog Mom", "🍹 Margaritas", "🛶 Lake Travis"],
+                photos: [
+                    "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=85",
+                    "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=900&q=85"
+                ],
+                autoReply: "Hey handsome! 🤠 You caught me right on time. What are you up to tonight in Austin?"
+            },
+            {
+                id: 4,
+                name: "Brooklyn",
+                age: 26,
+                gender: "women",
+                city: "New York, NY",
+                role: "Fashion PR Executive",
+                distance: "0.8 miles away",
+                compatibility: "99% Match",
+                bio: "SoHo loft living 🗽🖤 Sucker for speakeasy cocktails, late-night pizza slices, and good banter. Swipe right if you can keep up 😉",
+                tags: ["🍸 Speakeasies", "🍕 2AM Pizza", "✈️ Weekend Trips", "🖤 SoHo Vibes"],
+                photos: [
+                    "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=900&q=85",
+                    "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=900&q=85"
+                ],
+                autoReply: "Hey there 😘 I know a secret cocktail bar in downtown Manhattan—wanna join me?"
+            },
+            {
+                id: 5,
+                name: "Hailey",
+                age: 22,
+                gender: "women",
+                city: "Nashville, TN",
+                role: "Songwriter & Barista",
+                distance: "2.4 miles away",
+                compatibility: "94% Match",
+                bio: "Whiskey neat & acoustic nights on Broadway 🥃🎶 Looking for a fun date this week—bonus points if you let me steal your hoodie!",
+                tags: ["🥃 Bourbon", "🎶 Country & Pop", "🚗 Late Drives", "☕ Iced Coffee"],
+                photos: [
+                    "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?auto=format&fit=crop&w=900&q=85",
+                    "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=900&q=85"
+                ],
+                autoReply: "Aww thank you for messaging me! 🥰 What's your favorite spot to hang out?"
+            },
+            {
+                id: 6,
+                name: "Ava",
+                age: 25,
+                gender: "women",
+                city: "Chicago, IL",
+                role: "Digital Marketing",
+                distance: "1.9 miles away",
+                compatibility: "97% Match",
+                bio: "River North rooftops in the summer, cozy movie cuddles in the winter 🍿🔥 Let's grab sushi and see if the chemistry is real!",
+                tags: ["🍣 Sushi Dates", "🏙️ Rooftops", "🎬 Netflix & Wine", "🏀 Bulls Games"],
+                photos: [
+                    "https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?auto=format&fit=crop&w=900&q=85"
+                ],
+                autoReply: "Hey!! Just saw your profile 😍 Sushi and drinks tonight?"
+            },
+            {
+                id: 7,
+                name: "Ethan",
+                age: 28,
+                gender: "men",
+                city: "Austin, TX",
+                role: "Tech Founder & Surfer",
+                distance: "2.1 miles away",
+                compatibility: "96% Match",
+                bio: "6'2\" • Golden Retriever energy 🐕 Wakeboarding on Lake Austin by day, trying new cocktail lounges by night. First round is on me 🥃",
+                tags: ["🏄‍♂️ Wakeboarding", "🥃 Old Fashioned", "🥩 Steakhouse", "✈️ Travel"],
+                photos: [
+                    "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=85",
+                    "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=900&q=85"
+                ],
+                autoReply: "Hey! Great matching with you 🙌 Let me take you out for drinks this week?"
+            },
+            {
+                id: 8,
+                name: "Liam",
+                age: 27,
+                gender: "men",
+                city: "Los Angeles, CA",
+                role: "Architecture & Fitness",
+                distance: "1.2 miles away",
+                compatibility: "95% Match",
+                bio: "West Hollywood • Gym, beach volleyball in Santa Monica, and cooking Italian food from scratch 🍝 Looking for my partner in crime.",
+                tags: ["🏐 Beach Volleyball", "🍝 Home Chef", "🏋️‍♂️ Fitness", "🌅 Sunset Hikes"],
+                photos: [
+                    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=85"
+                ],
+                autoReply: "Hey there! 😊 What's your favorite spot in LA for a first date?"
+            }
+        ];
+
+        // App State
+        let currentGenderFilter = 'women';
+        let currentCityFilter = 'ALL';
+        let filteredDeck = [];
+        let currentIndex = 0;
+        let currentPhotoIndex = 0;
+        let matchedProfiles = [americanProfiles[0], americanProfiles[1], americanProfiles[3]];
+        let callTimerInterval = null;
+
+        // Live American Video Chat Rooms Data
+        const usLiveRooms = [
+            {
+                title: "Miami Pool Party Lounge 🌴",
+                host: "Chloe & 3 Girls",
+                city: "Miami, FL",
+                viewers: 48,
+                tag: "Bikini Cam",
+                img: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                title: "LA Late Night Vibes ✨",
+                host: "Madison, 24",
+                city: "Los Angeles, CA",
+                viewers: 34,
+                tag: "1-on-1 Ready",
+                img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                title: "NYC Speed Dating Afterhours 🍸",
+                host: "Brooklyn, 26",
+                city: "New York, NY",
+                viewers: 67,
+                tag: "Truth or Dare",
+                img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                title: "Austin Country Hangout 🤠",
+                host: "Savannah, 25",
+                city: "Austin, TX",
+                viewers: 29,
+                tag: "Private Requests",
+                img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80"
+            }
+        ];
+
+        // Initialize App
+        function initApp() {
+            applyFilters();
+            renderSavedMatches();
+            // Simulate live US counter fluctuations
+            setInterval(() => {
+                const base = 1480;
+                const delta = Math.floor(Math.random() * 35) - 15;
+                document.getElementById('onlineCounter').innerText = (base + delta).toLocaleString();
+            }, 4000);
+        }
+
+        function applyFilters() {
+            filteredDeck = americanProfiles.filter(p => {
+                const genderMatch = currentGenderFilter === 'all' || p.gender === currentGenderFilter;
+                const cityMatch = currentCityFilter === 'ALL' || p.city === currentCityFilter;
+                return genderMatch && cityMatch;
+            });
+
+            if (filteredDeck.length === 0) {
+                filteredDeck = [...americanProfiles];
+            }
+            currentIndex = 0;
+            currentPhotoIndex = 0;
+            renderProfileCard();
+        }
+
+        function setGenderFilter(gender) {
+            currentGenderFilter = gender;
+            ['women', 'men', 'all'].forEach(g => {
+                const btn = document.getElementById(`filter-${g}`);
+                const mBtn = document.getElementById(`m-filter-${g}`);
+                if (g === gender) {
+                    btn?.classList.add('bg-brand-rose', 'text-white');
+                    btn?.classList.remove('text-slate-300');
+                    mBtn?.classList.add('bg-brand-rose', 'text-white');
+                    mBtn?.classList.remove('text-slate-300');
+                } else {
+                    btn?.classList.remove('bg-brand-rose', 'text-white');
+                    btn?.classList.add('text-slate-300');
+                    mBtn?.classList.remove('bg-brand-rose', 'text-white');
+                    mBtn?.classList.add('text-slate-300');
+                }
+            });
+            applyFilters();
+        }
+
+        function handleCityChange() {
+            currentCityFilter = document.getElementById('citySelector').value;
+            applyFilters();
+            showToast("📍", "US Location Updated", `Showing singles near ${currentCityFilter === 'ALL' ? 'your area' : currentCityFilter}`);
+        }
+
+        function renderProfileCard() {
+            const profile = filteredDeck[currentIndex];
+            if (!profile) return;
+
+            document.getElementById('profileImage').src = profile.photos[currentPhotoIndex] || profile.photos[0];
+            document.getElementById('profileNameAge').innerText = `${profile.name}, ${profile.age}`;
+            document.getElementById('profileLocation').innerHTML = `<i class="fa-solid fa-location-dot text-brand-rose"></i> ${profile.city} • ${profile.role}`;
+            document.getElementById('profileStatus').innerText = `Online Now • ${profile.distance}`;
+            document.getElementById('profileCompatibility').innerText = profile.compatibility;
+            document.getElementById('profileBio').innerText = `"${profile.bio}"`;
+
+            // Render Tags
+            const tagsContainer = document.getElementById('profileTags');
+            tagsContainer.innerHTML = profile.tags.map(tag => 
+                `<span class="text-[11px] font-semibold bg-white/15 backdrop-blur-md text-white px-2.5 py-1 rounded-full border border-white/15">${tag}</span>`
+            ).join('');
+
+            // Render Photo Story Bars
+            const indicators = document.getElementById('photoIndicators');
+            indicators.innerHTML = profile.photos.map((_, idx) => 
+                `<div class="h-1 flex-1 rounded-full transition-all ${idx === currentPhotoIndex ? 'bg-white shadow' : 'bg-white/30'}"></div>`
+            ).join('');
+        }
+
+        function nextPhoto(e) {
+            e.stopPropagation();
+            const profile = filteredDeck[currentIndex];
+            if (profile.photos.length > 1) {
+                currentPhotoIndex = (currentPhotoIndex + 1) % profile.photos.length;
+                renderProfileCard();
+            }
+        }
+
+        function prevPhoto(e) {
+            e.stopPropagation();
+            const profile = filteredDeck[currentIndex];
+            if (profile.photos.length > 1) {
+                currentPhotoIndex = (currentPhotoIndex - 1 + profile.photos.length) % profile.photos.length;
+                renderProfileCard();
+            }
+        }
+
+        function nextProfile() {
+            currentIndex = (currentIndex + 1) % filteredDeck.length;
+            currentPhotoIndex = 0;
+            renderProfileCard();
+        }
+
+        // ================= BUTTON 1: PASS / NEXT =================
+        function triggerPass(e) {
+            const card = document.getElementById('profileCard');
+            card.classList.add('swipe-left');
+            setTimeout(() => {
+                nextProfile();
+                card.classList.remove('swipe-left');
+            }, 340);
+        }
+
+        // ================= BUTTON 2: SUPER SPARK ⚡ =================
+        function triggerSuperSpark(e) {
+            spawnParticles(e.clientX || window.innerWidth / 2, e.clientY || window.innerHeight - 100, '⚡');
+            const profile = filteredDeck[currentIndex];
+            addProfileToMatches(profile);
+
+            const card = document.getElementById('profileCard');
+            card.classList.add('swipe-up');
+            showToast("⚡", `Super Spark Sent to ${profile.name}!`, "Your profile is now pinned #1 in her inbox.");
+
+            setTimeout(() => {
+                card.classList.remove('swipe-up');
+                openMatchModal(profile, true);
+            }, 380);
+        }
+
+        // ================= BUTTON 3: INSTANT LIVE CHAT 💬 =================
+        function openInstantChat(e) {
+            if (e) spawnParticles(e.clientX || window.innerWidth / 2, e.clientY || window.innerHeight - 100, '💬');
+            const profile = filteredDeck[currentIndex];
+            addProfileToMatches(profile);
+
+            document.getElementById('chatHeaderAvatar').src = profile.photos[0];
+            document.getElementById('chatHeaderName').innerText = `${profile.name}, ${profile.age}`;
+
+            const chatFeed = document.getElementById('chatMessages');
+            chatFeed.innerHTML = `
+                <div class="text-center my-2">
+                    <span class="text-[11px] bg-white/10 text-slate-300 px-3 py-1 rounded-full">You connected with ${profile.name} from ${profile.city}</span>
+                </div>
+                <div class="flex items-end gap-2">
+                    <img src="${profile.photos[0]}" class="w-7 h-7 rounded-full object-cover">
+                    <div class="bg-white/10 border border-white/10 text-slate-100 rounded-2xl rounded-bl-none px-4 py-2.5 max-w-[80%]">
+                        ${profile.autoReply}
+                    </div>
+                </div>
+            `;
+
+            const modal = document.getElementById('chatModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeChatModal() {
+            const modal = document.getElementById('chatModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function sendQuickIcebreaker(text) {
+            document.getElementById('chatInput').value = text;
+            handleChatSubmit(new Event('submit'));
+        }
+
+        function handleChatSubmit(e) {
+            e.preventDefault();
+            const input = document.getElementById('chatInput');
+            const msg = input.value.trim();
+            if (!msg) return;
+
+            const profile = filteredDeck[currentIndex];
+            const chatFeed = document.getElementById('chatMessages');
+
+            // Append User Message
+            chatFeed.innerHTML += `
+                <div class="flex justify-end">
+                    <div class="bg-gradient-to-r from-brand-crimson to-brand-rose text-white rounded-2xl rounded-br-none px-4 py-2.5 max-w-[80%] shadow">
+                        ${msg}
+                    </div>
+                </div>
+            `;
+            input.value = '';
+            chatFeed.scrollTop = chatFeed.scrollHeight;
+
+            // Simulated Real-Time American Reply + Conversion CTA
+            setTimeout(() => {
+                chatFeed.innerHTML += `
+                    <div class="flex items-end gap-2">
+                        <img src="${profile.photos[0]}" class="w-7 h-7 rounded-full object-cover">
+                        <div class="bg-white/10 border border-brand-rose/40 text-slate-100 rounded-2xl rounded-bl-none px-4 py-2.5 max-w-[82%]">
+                            <p>Haha I love that 😘 Here, verify your free profile so I can send you my cell number & private snaps:</p>
+                            <button onclick="handlePrimaryConversionCTA()" class="mt-2 w-full py-2 rounded-xl bg-brand-rose hover:bg-brand-crimson text-white font-bold text-xs shadow transition">
+                                🔓 Unlock ${profile.name}'s Private Contact →
+                            </button>
+                        </div>
+                    </div>
+                `;
+                chatFeed.scrollTop = chatFeed.scrollHeight;
+            }, 1100);
+        }
+
+        // ================= BUTTON 4: MATCH & DATE ❤️‍🔥 =================
+        function triggerInstantMatch(e) {
+            spawnParticles(e.clientX || window.innerWidth / 2, e.clientY || window.innerHeight - 100, '❤️‍🔥');
+            const profile = filteredDeck[currentIndex];
+            addProfileToMatches(profile);
+
+            const card = document.getElementById('profileCard');
+            card.classList.add('swipe-right');
+
+            setTimeout(() => {
+                card.classList.remove('swipe-right');
+                openMatchModal(profile, false);
+            }, 340);
+        }
+
+        function openMatchModal(profile, isSuperSpark) {
+            document.getElementById('matchModalImg').src = profile.photos[0];
+            document.getElementById('matchModalTitle').innerText = isSuperSpark 
+                ? `Super Spark Match with ${profile.name}! ⚡`
+                : `You & ${profile.name} Matched! ❤️‍🔥`;
+            document.getElementById('matchModalSubtitle').innerText = 
+                `${profile.name} (${profile.age}) is online right now in ${profile.city} and wants to meet tonight.`;
+
+            const modal = document.getElementById('matchModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeMatchModal() {
+            const modal = document.getElementById('matchModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function switchMatchToChat() {
+            closeMatchModal();
+            openInstantChat();
+        }
+
+        // Primary Conversion Action (Redirects to TARGET_OFFER_URL)
+        function handlePrimaryConversionCTA() {
+            triggerGlobalRedirect();
+        }
+
+        // Saved Matches Drawer Logic
+        function addProfileToMatches(profile) {
+            if (!matchedProfiles.some(p => p.id === profile.id)) {
+                matchedProfiles.unshift(profile);
+                document.getElementById('matchCountBadge').innerText = matchedProfiles.length;
+                renderSavedMatches();
+            }
+        }
+
+        function renderSavedMatches() {
+            const container = document.getElementById('savedMatchesList');
+            container.innerHTML = matchedProfiles.map(p => `
+                <div class="flex items-center justify-between bg-white/5 hover:bg-white/10 p-2.5 rounded-2xl border border-white/10 transition">
+                    <div class="flex items-center gap-3">
+                        <div class="relative">
+                            <img src="${p.photos[0]}" class="w-12 h-12 rounded-full object-cover border border-brand-rose">
+                            <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-400 border-2 border-slate-900"></span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-white">${p.name}, ${p.age}</h4>
+                            <p class="text-[11px] text-slate-400">${p.city} • Sent you a wink 😉</p>
+                        </div>
+                    </div>
+                    <button onclick="selectMatchedProfile(${p.id})" class="bg-brand-rose/20 hover:bg-brand-rose text-brand-rose hover:text-white border border-brand-rose/40 px-3 py-1.5 rounded-xl text-xs font-bold transition">
+                        Chat Now
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function selectMatchedProfile(id) {
+            const idx = filteredDeck.findIndex(p => p.id === id);
+            if (idx !== -1) currentIndex = idx;
+            renderProfileCard();
+            toggleMatchesModal();
+            openInstantChat();
+        }
+
+        function toggleMatchesModal() {
+            const drawer = document.getElementById('matchesDrawer');
+            if (drawer.classList.contains('hidden')) {
+                drawer.classList.remove('hidden');
+                drawer.classList.add('flex');
+            } else {
+                drawer.classList.add('hidden');
+                drawer.classList.remove('flex');
+            }
+        }
+
+        function submitVipSignup() {
+            const email = document.getElementById('vipEmailInput').value.trim();
+            if (!email) return;
+            if (CUSTOM_OFFER_URL && CUSTOM_OFFER_URL.trim() !== "") {
+                window.open(CUSTOM_OFFER_URL, "_blank");
+                return;
+            }
+            document.getElementById('vipSuccessMsg').classList.remove('hidden');
+            document.getElementById('vipEmailInput').value = '';
+        }
+
+        function resetDeck() {
+            currentCityFilter = 'ALL';
+            document.getElementById('citySelector').value = 'ALL';
+            setGenderFilter('women');
+        }
+
+        // ================= BUTTON 5: AUDIO CALL LOGIC 📞 =================
+        function openAudioCallModal(e) {
+            if (e) spawnParticles(e.clientX || window.innerWidth / 2, e.clientY || window.innerHeight - 100, '📞');
+            const profile = filteredDeck[currentIndex];
+            addProfileToMatches(profile);
+
+            document.getElementById('audioCallAvatar').src = profile.photos[0];
+            document.getElementById('audioCallName').innerText = `${profile.name}, ${profile.age}`;
+            document.getElementById('audioCallLocation').innerText = `${profile.city} • Direct US Voice Line`;
+            document.getElementById('audioVoiceTranscript').innerText = 
+                `"Hey cutie... it's ${profile.name} from ${profile.city.split(',')[0]} 😊 Unlock your mic so we can talk privately tonight..."`;
+
+            const modal = document.getElementById('audioCallModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            startCallTimer('audioCallTimer');
+        }
+
+        function closeAudioCallModal() {
+            stopCallTimer();
+            const modal = document.getElementById('audioCallModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function toggleAudioControl(btn) {
+            btn.classList.toggle('bg-brand-rose');
+            btn.classList.toggle('text-white');
+            showToast("🎙️", "Audio Setting Updated", "Verify your free US profile for full 2-way voice crystal audio.");
+        }
+
+        // ================= BUTTON 6: VIDEO CALL LOGIC 📹 =================
+        function openVideoCallModal(e) {
+            if (e) spawnParticles(e.clientX || window.innerWidth / 2, e.clientY || window.innerHeight - 100, '📹');
+            const profile = filteredDeck[currentIndex];
+            addProfileToMatches(profile);
+
+            document.getElementById('videoCallStreamImg').src = profile.photos[currentPhotoIndex] || profile.photos[0];
+            document.getElementById('videoCallName').innerText = `${profile.name}, ${profile.age} • LIVE HD`;
+            document.getElementById('videoCallCaption').innerText = 
+                `"Hey from ${profile.city.split(',')[0]}! 😘 Turn on your camera or unlock private mode so we can have fun..."`;
+
+            const modal = document.getElementById('videoCallModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            startCallTimer('videoCallTimer');
+        }
+
+        function closeVideoCallModal() {
+            stopCallTimer();
+            const modal = document.getElementById('videoCallModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Shared Timer for Audio/Video Call
+        function startCallTimer(elementId) {
+            stopCallTimer();
+            let seconds = 1;
+            const el = document.getElementById(elementId);
+            el.innerText = "00:01";
+            callTimerInterval = setInterval(() => {
+                seconds++;
+                const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
+                const secs = String(seconds % 60).padStart(2, '0');
+                el.innerText = `${mins}:${secs}`;
+            }, 1000);
+        }
+
+        function stopCallTimer() {
+            if (callTimerInterval) {
+                clearInterval(callTimerInterval);
+                callTimerInterval = null;
+            }
+        }
+
+        // ================= BUTTON 7: LIVE VIDEO CHAT ROOMS LOGIC 🎥 =================
+        function openChatRoomsModal(e) {
+            if (e) spawnParticles(e.clientX || window.innerWidth / 2, e.clientY || window.innerHeight - 100, '🎥');
+            const grid = document.getElementById('liveRoomsGrid');
+            grid.innerHTML = usLiveRooms.map((room, idx) => `
+                <div class="relative rounded-2xl overflow-hidden border border-white/15 bg-black/50 group">
+                    <img src="${room.img}" class="w-full h-36 object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    <div class="absolute top-2 left-2 right-2 flex items-center justify-between">
+                        <span class="bg-rose-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span> ${room.viewers} watching
+                        </span>
+                        <span class="bg-black/60 backdrop-blur-md text-fuchsia-300 text-[10px] font-bold px-2 py-0.5 rounded-full border border-fuchsia-400/30">
+                            ${room.tag}
+                        </span>
+                    </div>
+                    <div class="absolute bottom-2 left-2.5 right-2.5">
+                        <h4 class="font-bold text-xs text-white truncate">${room.title}</h4>
+                        <p class="text-[10px] text-slate-300 mb-1.5">${room.host} • ${room.city}</p>
+                        <button onclick="joinSpecificRoom(${idx})" class="w-full py-1.5 rounded-lg bg-fuchsia-600 hover:bg-brand-rose text-white font-bold text-[11px] transition">
+                            Join Live Room →
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            const modal = document.getElementById('chatRoomsModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeChatRoomsModal() {
+            const modal = document.getElementById('chatRoomsModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function joinSpecificRoom(idx) {
+            closeChatRoomsModal();
+            currentIndex = idx % filteredDeck.length;
+            renderProfileCard();
+            openVideoCallModal();
+        }
+
+        // ================= BUTTON 8: PRIVATE VAULT & CAM ROULETTE 🔒 =================
+        function openPrivateVaultModal(e) {
+            if (e) spawnParticles(e.clientX || window.innerWidth / 2, e.clientY || window.innerHeight - 100, '🔥');
+            const profile = filteredDeck[currentIndex];
+            document.getElementById('vaultTitle').innerText = `${profile.name}'s Private Snap Vault`;
+
+            const photos = [
+                profile.photos[0],
+                profile.photos[1] || americanProfiles[(currentIndex + 1) % americanProfiles.length].photos[0]
+            ];
+
+            const vaultGrid = document.getElementById('vaultMediaGrid');
+            vaultGrid.innerHTML = photos.map((imgUrl, i) => `
+                <div onclick="unblurVaultItem(this)" class="relative h-44 rounded-2xl overflow-hidden border border-rose-500/40 cursor-pointer group">
+                    <img src="${imgUrl}" class="vault-img w-full h-full object-cover blur-md scale-110 transition duration-500">
+                    <div class="vault-overlay absolute inset-0 bg-black/50 flex flex-col items-center justify-center p-2">
+                        <div class="w-10 h-10 rounded-full bg-rose-600/80 text-white flex items-center justify-center mb-1 shadow-lg">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
+                        <span class="text-[11px] font-extrabold text-white">Private Clip #${i + 1}</span>
+                        <span class="text-[10px] text-amber-300">Tap to Peek (3s)</span>
+                    </div>
+                </div>
+            `).join('');
+
+            const modal = document.getElementById('privateVaultModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function unblurVaultItem(cardEl) {
+            const img = cardEl.querySelector('.vault-img');
+            const overlay = cardEl.querySelector('.vault-overlay');
+            img.classList.remove('blur-md');
+            overlay.classList.add('opacity-0');
+            showToast("🔓", "Preview Unlocked!", "Join free to unlock all full-length private videos.");
+        }
+
+        function spinCamRoulette() {
+            closePrivateVaultModal();
+            nextProfile();
+            openVideoCallModal();
+            showToast("🎲", "Cam Roulette Matched!", `Connected live with ${filteredDeck[currentIndex].name}!`);
+        }
+
+        function closePrivateVaultModal() {
+            const modal = document.getElementById('privateVaultModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Particle Burst Effect
+        function spawnParticles(x, y, emoji) {
+            for (let i = 0; i < 6; i++) {
+                const el = document.createElement('div');
+                el.className = 'floating-particle text-2xl';
+                el.innerText = emoji;
+                el.style.left = `${x + (Math.random() * 60 - 30)}px`;
+                el.style.top = `${y + (Math.random() * 20 - 10)}px`;
+                document.body.appendChild(el);
+                setTimeout(() => el.remove(), 1200);
+            }
+        }
+
+        function showToast(icon, title, sub) {
+            const toast = document.getElementById('toastBanner');
+            document.getElementById('toastIcon').innerText = icon;
+            document.getElementById('toastTitle').innerText = title;
+            document.getElementById('toastSub').innerText = sub;
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('flex');
+            }, 3000);
+        }
+
+        window.onload = initApp;
+    </script>
+
+<script async="" src=".netlify/scripts/hud/variant=public" data-nf-variant="public" data-netlify-site-id="7ab5bb98-7502-49ad-bf37-ec82ec9d85cd" data-app-host="app.netlify.com" data-account-tier="free"></script>
+</body></html>
